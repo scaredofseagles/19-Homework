@@ -1,0 +1,13 @@
+nav{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+li{
+    list-style-type: none;
+}
+
+footer{
+    display: flex;
+    justify-content: space-evenly;
+}
