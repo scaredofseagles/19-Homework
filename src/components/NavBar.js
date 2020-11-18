@@ -1,5 +1,5 @@
 import React from 'react'
-import Search from './Search'
+// import Search from './Search'
 import './style.css'
 
 function Navbar(){
@@ -7,9 +7,9 @@ function Navbar(){
         <nav>
             <ul>
                 <li>Employee Directory</li>
-                <li>
+                {/* <li>
                     <Search/>
-                </li>
+                </li> */}
             </ul>
         </nav>
     )
