@@ -1,76 +1,52 @@
-import React from "react";
-import Search from './Search'
+import React, {useEffect, useState} from 'react'
+import axios from 'axios'
+import Table from './Table'
 
-function MainContainer(props){
-    return(
-        <div className="container" style={{marginTop: "20px", marginBottom: "20px"}}>
-            <Search list={props.list}/>
-            <TableDefault list={props.list}/>
-        </div>
-    )
-}
+function MainContainer(){
+    const [users, setUsers] = useState([])
+    const [search, setSearch] = useState("")
 
-function TableDefault(props){
-    function sortList(){
-        console.log('SORTING!!!!')
+    useEffect(() => {
+        getRandomUsers()
+    }, [])
+
+    async function getRandomUsers(){
+        const result = await axios.get('https://randomuser.me/api/?results=25&seed=seed')
+        setUsers(result.data.results)
     }
 
-    return (
-        <table style={{width: "100%"}}>
-            <thead>
-                <tr>
-                <th>Image</th>
-                <th>Name <button className='filter' onClick={sortList()}><i className="fas fa-filter"></i></button></th>
-                <th>Phone Number <button className='filter' onClick={sortList()}><i className="fas fa-filter"></i></button></th>
-                <th>Email <button className='filter' onClick={sortList()}><i className="fas fa-filter"></i></button></th>
-                <th>Location</th>
-                </tr>
-            </thead>
-            <tbody>
-                {props.list.map(user => 
-                <tr style={{borderTop: "2px solid gray"}}>
-                <td>
-                    <img src={user.picture.thumbnail} alt="profile"/>
-                </td>
-                <td>{user.name.first} {user.name.last}</td>
-                <td>{user.phone}</td>
-                <td>{user.email}</td>
-                <td>{user.location.state}, {user.location.country}</td>
-                </tr>
-                )}
-            </tbody>
-        </table>
-    )
-}
+    function getSearchResults(){
+        console.log('Searching for:', search)
+        const searchedUser = users.filter(user => search.indexOf(user.name.first)> -1 || search.indexOf(user.name.last)> -1)
+        console.log(searchedUser)
+        setUsers(searchedUser)
+    }
 
+    function clearSearch(){
+        setSearch("")
+        getRandomUsers()
+    }
 
-// lists users based on serach results
-function TableResult(props){
+    function handleInputChange(event){
+        setSearch(event.target.value)
+        console.log(event.target.value)
+    }
+
+    function handleFormSubmit(event){
+        event.preventDefault()
+        getSearchResults()
+    }
+
     return(
-        <table style={{width: "100%"}}>
-            <thead>
-                <tr>
-                <th>Image</th>
-                <th>Name <button className='filter' onClick={props.sortList()}><i className="fas fa-filter"></i></button></th>
-                <th>Phone Number <button className='filter' onClick={props.sortList()}><i className="fas fa-filter"></i></button></th>
-                <th>Email <button className='filter' onClick={props.sortList()}><i className="fas fa-filter"></i></button></th>
-                <th>Location</th>
-                </tr>
-            </thead>
-            <tbody>
-                {props.list.map(user => 
-                <tr style={{borderTop: "2px solid gray"}}>
-                <td>
-                    <img src={user.picture.thumbnail} alt="profile"/>
-                </td>
-                <td>{user.name.first} {user.name.last}</td>
-                <td>{user.phone}</td>
-                <td>{user.email}</td>
-                <td>{user.location.state}, {user.location.country}</td>
-                </tr>
-                )}
-            </tbody>
-            </table>
+        <div className="container" style={{marginTop: "20px", marginBottom: "20px"}}>
+            {/* search function */}
+            <div className="input-group mb-3 float-center">
+                <input value={search} onChange={handleInputChange} type="text" className="form-control" placeholder="Search Employee by Name" aria-label="Recipient's username" aria-describedby="button-addon2"/>
+                <button className="btn btn-outline-danger" onClick={clearSearch}><i class="fas fa-window-close"></i></button>
+                <button onClick={handleFormSubmit} className="btn btn-outline-primary" type="submit" id="button-addon2">Search</button>
+            </div>
+            <Table list={users}/>
+        </div>
     )
 }
 
