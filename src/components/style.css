@@ -11,8 +11,19 @@ nav{
     padding-bottom: 10px;
 }
 
-table{
+.filter{
+    color: rgb(197, 65, 65);
+    opacity: 0;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
 
+.filter:hover{
+    opacity: 1;
 }
 
 footer{
