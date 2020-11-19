@@ -1,12 +1,11 @@
 import React from 'react'
-import './style.css'
 
 function Footer(){
-    return(
+    return (
         <footer>
             <ul>
-                <li>Copyright © Dailey Kaze | All Rights Reserved</li>
-                <li>Images by ... </li>
+                <li>CopyRight 2020</li>
+                <li>Users by RandomUsers.me</li>
             </ul>
         </footer>
     )

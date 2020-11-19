@@ -1,16 +1,9 @@
 import React from 'react'
-// import Search from './Search'
-import './style.css'
 
 function Navbar(){
-    return(
+    return (
         <nav>
-            <ul>
-                <li>Employee Directory</li>
-                {/* <li>
-                    <Search/>
-                </li> */}
-            </ul>
+            <h1>Employee Directory</h1>
         </nav>
     )
 }
