@@ -7,9 +7,9 @@ function Table(props){
             <thead>
                 <tr>
                 <th>Image</th>
-                <th>Name <button className='filter'><i className="fas fa-filter" ></i></button></th>
-                <th>Phone Number <button className='filter'><i className="fas fa-filter" value={props.list.number}></i></button></th>
-                <th>Email <button className='filter' onClick={props.sortList}><i className="fas fa-filter" value={props.list.email}></i></button></th>
+                <th>Name</th>
+                <th>Phone Number <button className='filter' onClick={props.sortNumber}><i className="fas fa-filter"></i></button></th>
+                <th>Email <button className='filter' onClick={props.sortEmail}><i className="fas fa-filter"></i></button></th>
                 <th>Location</th>
                 </tr>
             </thead>

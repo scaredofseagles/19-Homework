@@ -37,7 +37,7 @@ function MainContainer(){
         getSearchResults()
     }
 
-    function sortList(){
+    function sortEmail(){
         console.log('SORTING!!!!')
         const sorted = users.sort( function(item1, item2){
             if(item1.email < item2.email){
@@ -49,7 +49,22 @@ function MainContainer(){
             return 0
         })
         console.log('Sorted List: ', sorted)
-        setUsers(sorted)
+        setUsers([...sorted])
+    }
+
+    function sortNumber(){
+        console.log('SORTING!!!!')
+        const sorted = users.sort( function(item1, item2){
+            if(item1.phone < item2.phone){
+                return -1
+            }
+            if (item1.phone > item2.phone){
+                return 1
+            }
+            return 0
+        })
+        console.log('Sorted List: ', sorted)
+        setUsers([...sorted])
     }
 
     return(
@@ -60,7 +75,10 @@ function MainContainer(){
                 <button className="btn btn-outline-danger" onClick={clearSearch}><i class="fas fa-window-close"></i></button>
                 <button onClick={handleFormSubmit} className="btn btn-outline-primary" type="submit" id="button-addon2">Search</button>
             </div>
-            <Table list={users} sortList={sortList}/>
+            <div style={{display: "flex", justifyContent: "center",  margin: "auto", color: "gray"}}>
+                <p><small>Hover over the Phone Number or Email to Sort Employees</small></p>
+            </div>
+            <Table list={users} sortEmail={sortEmail} sortNumber={sortNumber}/>
         </div>
     )
 }
