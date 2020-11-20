@@ -1,18 +1,15 @@
 import React from 'react'
 
 function Table(props){
-    function sortList(){
-        console.log('SORTING!!!!')
-    }
 
     return (
         <table style={{width: "100%"}}>
             <thead>
                 <tr>
                 <th>Image</th>
-                <th>Name <button className='filter' onClick={sortList}><i className="fas fa-filter"></i></button></th>
-                <th>Phone Number <button className='filter' onClick={sortList}><i className="fas fa-filter"></i></button></th>
-                <th>Email <button className='filter' onClick={sortList}><i className="fas fa-filter"></i></button></th>
+                <th>Name <button className='filter'><i className="fas fa-filter" ></i></button></th>
+                <th>Phone Number <button className='filter'><i className="fas fa-filter" value={props.list.number}></i></button></th>
+                <th>Email <button className='filter' onClick={props.sortList}><i className="fas fa-filter" value={props.list.email}></i></button></th>
                 <th>Location</th>
                 </tr>
             </thead>
