@@ -20,7 +20,7 @@ The following image is an example of the web application's functionality and app
 
 ## URL
 
-See the deployed web application [here]()
+See the deployed web application [here](https://scaredofseagles.github.io/Employee-Directory/)
 
 ## License
 
